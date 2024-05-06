@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://fder2mttn23d"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_auqg6"]
+polygon = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqpdl"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yijij"]
+size = Vector2(100, 100)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w44nn"]
+
+[sub_resource type="Gradient" id="Gradient_37ads"]
+offsets = PackedFloat32Array(0, 0.584416, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8lpt4"]
+gradient = SubResource("Gradient_37ads")
+repeat = 1
+
+[node name="Box" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+occluder = SubResource("OccluderPolygon2D_auqg6")
+occluder_light_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aqpdl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_yijij")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_w44nn")
+scale = Vector2(1.54148, 1.55186)
+texture = SubResource("GradientTexture2D_8lpt4")

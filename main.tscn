@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dprdwwbxc44xr"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ij75u"]
+[ext_resource type="PackedScene" uid="uid://chudftdlp4sgm" path="res://entities/player.tscn" id="2_633yh"]
+[ext_resource type="Texture2D" uid="uid://dq5lmlwphf0b2" path="res://assets/background.svg" id="3_tl2gl"]
+[ext_resource type="PackedScene" uid="uid://fder2mttn23d" path="res://entities/box.tscn" id="4_4h8ov"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ij75u")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(559, 319)
+scale = Vector2(6.91956, 5.32609)
+texture = ExtResource("3_tl2gl")
+
+[node name="Player" parent="." instance=ExtResource("2_633yh")]
+position = Vector2(512, 288)
+
+[node name="Box" parent="." instance=ExtResource("4_4h8ov")]
+position = Vector2(287, 261)
+collision_mask = 3
+
+[node name="Box2" parent="." instance=ExtResource("4_4h8ov")]
+position = Vector2(711, 258)
+
+[node name="Box3" parent="." instance=ExtResource("4_4h8ov")]
+position = Vector2(500, 115)
+
+[node name="Box4" parent="." instance=ExtResource("4_4h8ov")]
+position = Vector2(538, 497)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)

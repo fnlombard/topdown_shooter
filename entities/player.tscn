@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://chudftdlp4sgm"]
+
+[ext_resource type="Script" path="res://entities/player.gd" id="1_tcsi0"]
+[ext_resource type="Texture2D" uid="uid://cwydwebiw2q7j" path="res://assets/player.svg" id="2_r7jig"]
+[ext_resource type="Shader" path="res://entities/player.gdshader" id="3_5kxj1"]
+[ext_resource type="Texture2D" uid="uid://bc00vr53c4e07" path="res://assets/exampel_point_light.webp" id="3_y5lsg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hjgmd"]
+radius = 25.1794
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_07065"]
+shader = ExtResource("3_5kxj1")
+shader_parameter/light_pos = null
+shader_parameter/light_radius = 400.0
+shader_parameter/light_angle = 45.0
+shader_parameter/light_direction = 0.0
+shader_parameter/softness = 0.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6nui0"]
+radius = 202.544
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_tcsi0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hjgmd")
+
+[node name="TextureLight" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(1.96239, 1.90089)
+energy = 1.3
+texture = ExtResource("3_y5lsg")
+texture_scale = 2.0
+
+[node name="ShadowLight" type="PointLight2D" parent="."]
+visible = false
+show_behind_parent = true
+light_mask = 2
+visibility_layer = 2
+scale = Vector2(1.97656, 1.89063)
+shadow_enabled = true
+shadow_filter_smooth = 3.0
+shadow_item_cull_mask = 2
+texture = ExtResource("3_y5lsg")
+texture_scale = 1.9
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_07065")
+texture = ExtResource("2_r7jig")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6nui0")
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
