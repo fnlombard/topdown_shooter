@@ -9,12 +9,12 @@
 script = ExtResource("1_ij75u")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(559, 319)
-scale = Vector2(6.91956, 5.32609)
+position = Vector2(538, 319)
+scale = Vector2(6.91956, 5.23989)
 texture = ExtResource("3_tl2gl")
 
 [node name="Player" parent="." instance=ExtResource("2_633yh")]
-position = Vector2(512, 288)
+position = Vector2(241, 559)
 
 [node name="Box" parent="." instance=ExtResource("4_4h8ov")]
 position = Vector2(287, 261)
@@ -32,3 +32,6 @@ position = Vector2(538, 497)
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0, 0, 0, 1)
+
+[connection signal="area_observe_add" from="Player" to="." method="_on_player_area_observe_add"]
+[connection signal="area_observe_remove" from="Player" to="." method="_on_player_area_observe_remove"]
