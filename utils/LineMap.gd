@@ -11,7 +11,7 @@ func add(area: Area2D) -> Array:
     var lines = self._map[area]
     return lines
 
-func get_lines(area: Area2D) -> Array[Line2D]:
+func get_lines(area: Area2D) -> Array:
     if area in self._map:
         return self._map[area]
     return []

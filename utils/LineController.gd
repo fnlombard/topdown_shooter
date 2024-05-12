@@ -14,6 +14,8 @@ func tick() -> void:
     pass
 
 func remove_area(area: Area2D) -> void:
+    for line in self._line_maps.get_lines(area):
+        self._parent.remove_child(line)
     self._line_maps.remove(area)
 
 func add_area(area: Area2D) -> void:
