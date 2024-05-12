@@ -1,7 +1,7 @@
 class_name LineController
 extends Object
 
-var _line_maps = LineMap.new()
+var _line_maps: Dictionary = {}
 var _parent: Node2D # Required to draw the lines.
 
 func _init(parent: Node2D) -> void:
@@ -14,9 +14,9 @@ func tick() -> void:
     pass
 
 func remove_area(area: Area2D) -> void:
-    for line in self._line_maps.get_lines(area):
+    for line in self._line_maps[area]:
         self._parent.remove_child(line)
-    self._line_maps.remove(area)
+    self._line_maps.erase(area)
 
 func add_area(area: Area2D) -> void:
     """
@@ -56,7 +56,8 @@ func _process_rect(rect_area: Area2D, shape: RectangleShape2D) -> void:
         shape_center + Vector2( - extents.x, extents.y).rotated(player_rotation)
     ]
 
-    var lines = self._line_maps.add(rect_area)
+    self._line_maps[rect_area] = []
+    var lines = self._line_maps[rect_area]
 
     for corner in corners:
         var line = _create_line(player_center, corner)
