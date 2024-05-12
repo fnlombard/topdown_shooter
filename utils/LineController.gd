@@ -30,9 +30,21 @@ func process_area(area: Area2D) -> void:
                 print("Other Shape Type Detected:", child.shape)
         return
 
+func _contains_line(line: Line2D) -> bool:
+    for child in self._parent.get_children():
+        if line == child:
+            return true
+    return false
+
+func _remove_line(line: Line2D) -> void:
+    self._parent.remove_child(line)
+
+func _add_line(line: Line2D) -> void:
+    self._parent.add_child(line)
+
 func remove_area_lines(area: Area2D) -> void:
     for line in self._line_maps[area]:
-        self._parent.remove_child(line)
+        _remove_line(line)
 
     self._line_maps[area] = []
 
@@ -68,13 +80,22 @@ func _update_lines(lines: Array, points: Array) -> void:
         lines[index].set_point_position(0, player_center)
         lines[index].set_point_position(1, points[index])
 
+        # I need to use raycasting for the detection.
+        for area in self._line_maps.keys():
+            if lines[index].intersect_polygons(area.polygon).size() > 0:
+                _remove_line(lines[index])
+                return
+
+        if not _contains_line(lines[index]):
+            _add_line(lines[index])
+
 func _add_lines(lines: Array, points: Array) -> void:
     var player_center = PlayerVariables.position_get()
     for point in points:
         var line = _create_line(player_center, point)
 
         lines.append(line)
-        self._parent.add_child(line)
+        _add_line(line)
 
 func _create_line(point_a: Vector2, point_b: Vector2) -> Line2D:
     var line = Line2D.new()

@@ -14,20 +14,20 @@ scale = Vector2(6.91956, 5.23989)
 texture = ExtResource("3_tl2gl")
 
 [node name="Player" parent="." instance=ExtResource("2_633yh")]
-position = Vector2(241, 559)
+position = Vector2(133, 540)
 
 [node name="Box" parent="." instance=ExtResource("4_4h8ov")]
-position = Vector2(287, 261)
+position = Vector2(358, 176)
 collision_mask = 3
 
 [node name="Box2" parent="." instance=ExtResource("4_4h8ov")]
-position = Vector2(711, 258)
+position = Vector2(632, 171)
 
 [node name="Box3" parent="." instance=ExtResource("4_4h8ov")]
 position = Vector2(500, 115)
 
 [node name="Box4" parent="." instance=ExtResource("4_4h8ov")]
-position = Vector2(538, 497)
+position = Vector2(484, 332)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
